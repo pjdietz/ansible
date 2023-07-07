@@ -1,5 +1,19 @@
-- hosts: localhost
+- name: Workstation Setup
+  hosts: localhost
+  connection: local
+  vars:
+    should_be_root: "{{ false if ansible_os_family == 'Darwin' else true }}"
+
   pre_tasks:
+  - name: Update Brew
+    become: true
+    homebrew:
+      update_homebrew: true
+      state: present
+    tags:
+      - install
+    when: ansible_os_family == "Darwin"
+
   - name: Update Apt
     become: true
     apt:
@@ -8,10 +22,22 @@
       state: present
     tags:
       - install
+    when: ansible_os_family == "Ubunutu"
+
   tasks:
     - import_tasks: tasks/core.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/dotfiles.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/lsp.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/neovim.yml
+
     - import_tasks: tasks/productivity.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/zsh.yml
+      become: "{{ should_be_root }}"

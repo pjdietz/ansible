@@ -1,9 +1,18 @@
 - name: Install ZSH
-  apt: name=zsh
-  become: true
-  tags: &tags_for_zsh [ "install", "productivity", "dotfiles", "zsh" ]
+  package:
+    name: zsh
+    state: present
+  register: zsh_present
+  tags:
+    - install
+    - dotfiles
+    - zsh
 
 - name: Change shell to ZSH
-  shell: chsh -s $(which zsh)
-  become: true
-  tags: *tags_for_zsh
+  shell: chsh -s /bin/zsh
+  become: false
+  when: zsh_present.changed
+  tags:
+    - install
+    - dotfiles
+    - zsh

@@ -3,8 +3,8 @@
     name:
       - ripgrep
       - tmux
+      - tree
     state: present
-  become: true
   tags:
     - install
     - productivity

@@ -1,9 +1,8 @@
 - name: Install Shellcheck
-  become: true
   package:
     name: [shellcheck]
     state: present
   tags:
     - install
-    - neovim
     - lsp
+    - neovim

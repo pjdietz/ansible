@@ -1,16 +1,28 @@
-- name: Install System Packages 1 (build-essential, cmake, pkg-config, pthread)
-  become: true
-  apt:
-    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev"]
+- name: Install System Packages 1
+  package:
+    name:
+      - build-essential
+      - cmake
+      - pkg-configc
+      - libpthread-stubs0-dev
+    state: present
   tags:
     - install
     - neovim
     - core
-- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
-  become: true
-  apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+  when: ansible_os_family == "Ubunutu"
+
+- name: Install System Packages 2
+  package:
+    name:
+      - gettext
+      - lua5.1
+      - libtool
+      - libtool-bin
+      - unzip
+    state: present
   tags:
     - install
     - neovim
     - core
+  when: ansible_os_family == "Ubunutu"
