@@ -1,0 +1,17 @@
+- hosts: localhost
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+  tasks:
+    - import_tasks: tasks/core.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/lsp.yml
+    - import_tasks: tasks/neovim.yml
+    - import_tasks: tasks/productivity.yml
+    - import_tasks: tasks/zsh.yml

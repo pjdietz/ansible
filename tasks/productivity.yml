@@ -1,0 +1,10 @@
+- name: Install packages
+  package:
+    name:
+      - ripgrep
+      - tmux
+    state: present
+  become: true
+  tags:
+    - install
+    - productivity
