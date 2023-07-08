@@ -36,6 +36,9 @@
 
     - import_tasks: tasks/neovim.yml
 
+    - import_tasks: tasks/node.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/productivity.yml
       become: "{{ should_be_root }}"
 

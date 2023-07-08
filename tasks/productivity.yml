@@ -1,9 +1,11 @@
 - name: Install packages
   package:
     name:
+      - fzf
       - ripgrep
       - tmux
       - tree
+      - zoxide
     state: present
   tags:
     - install
