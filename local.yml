@@ -42,5 +42,8 @@
     - import_tasks: tasks/productivity.yml
       become: "{{ should_be_root }}"
 
+    - import_tasks: tasks/tree-sitter.yml
+      become: "{{ should_be_root }}"
+
     - import_tasks: tasks/zsh.yml
       become: "{{ should_be_root }}"

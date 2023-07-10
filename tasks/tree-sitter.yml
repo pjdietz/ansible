@@ -1,0 +1,13 @@
+- name: Install packages
+  package:
+    name: "{{ 'rust' if ansible_os_family == 'Darwin' else 'cargo' }}"
+    state: present
+  tags:
+    - install
+    - neovim
+    - tree-sitter
+
+- name: Install Tree-sitter
+  community.general.cargo:
+    name: tree-sitter-cli
+    state: present
