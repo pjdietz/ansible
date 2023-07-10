@@ -2,11 +2,12 @@
   package:
     # TODO: extract cargo install and add cargo install tree-sitter-cli
     name:
-      - cargo
+      - bat
       - fzf
       - ripgrep
       - tmux
       - tree
+      - xh
       - zoxide
     state: present
   tags:
