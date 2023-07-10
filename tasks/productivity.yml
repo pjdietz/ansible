@@ -1,6 +1,8 @@
 - name: Install packages
   package:
+    # TODO: extract cargo install and add cargo install tree-sitter-cli
     name:
+      - cargo
       - fzf
       - ripgrep
       - tmux
